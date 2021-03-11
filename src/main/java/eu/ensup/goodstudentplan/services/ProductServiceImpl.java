@@ -3,6 +3,7 @@ package eu.ensup.goodstudentplan.services;
 import eu.ensup.goodstudentplan.domain.Product;
 import eu.ensup.goodstudentplan.dto.ProductDto;
 import eu.ensup.goodstudentplan.repository.IProductRepository;
+import eu.ensup.goodstudentplan.repository.projection.ProductProjection;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,6 +33,16 @@ public class ProductServiceImpl implements IProductService{
         return new ResponseEntity<>(productDtoSet,HttpStatus.OK);
     }
 
+    public ResponseEntity<Set<ProductDto>> findAllMinimal() {
+        Set<ProductDto> productDtoSet = new HashSet<>();
+
+        for (ProductProjection product: productRepository.findAllMinimal()) {
+            productDtoSet.add(convertProjectionToDto(product));
+        }
+        return new ResponseEntity<>(productDtoSet,HttpStatus.OK);
+    }
+
+
     @Override
     public ResponseEntity<ProductDto> findById(long id) {
         Optional<Product> product = productRepository.findById(id);
@@ -58,4 +69,9 @@ public class ProductServiceImpl implements IProductService{
     public Product convertToEntity(ProductDto productDto) {
         return modelMapper.map(productDto,Product.class);
     }
+
+    public ProductDto convertProjectionToDto(ProductProjection productProjection){
+        return modelMapper.map(productProjection, ProductDto.class);
+    }
+
 }

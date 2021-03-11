@@ -10,6 +10,7 @@ import java.util.Set;
 public interface IProductService {
 
     ResponseEntity<Set<ProductDto>> findAll();
+    ResponseEntity<Set<ProductDto>> findAllMinimal();
 
     ResponseEntity<ProductDto> findById(long id);
 

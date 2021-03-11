@@ -19,6 +19,10 @@ public class ProductController {
     @GetMapping("/findAll")
     public ResponseEntity<Set<ProductDto>> findAllProduct(){ return productService.findAll(); }
 
+    @GetMapping("/findAllMinimal")
+    public ResponseEntity<Set<ProductDto>> findAllMinimalProduct(){ return productService.findAllMinimal(); }
+
+
     @GetMapping("/find/{id}")
     public ResponseEntity<ProductDto> findBy(@PathVariable long id){ return productService.findById(id); }
 }
