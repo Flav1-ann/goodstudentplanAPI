@@ -15,7 +15,11 @@ public class ProductTest {
     IProductRepository productRepository;
 
     @Test
-    void findAllProduct() throws Exception{
+    void findAllProduct(){
         assertEquals(((ArrayList)productRepository.findAll()).size(), 2);
+    }
+    @Test
+    void findOneProduct(){
+        assertEquals(productRepository.findById((long)1).get().getPrice(), 12);
     }
 }

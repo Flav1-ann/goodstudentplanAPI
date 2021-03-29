@@ -1,6 +1,7 @@
 package eu.ensup.goodstudentplan;
 
 
+import eu.ensup.goodstudentplan.domain.User;
 import eu.ensup.goodstudentplan.repository.IUserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,12 @@ public class UserTest {
     IUserRepository UserRepository;
 
     @Test
-    void findAllUser() throws Exception{
-        assertEquals(((ArrayList)UserRepository.findAll()).size(), 1);
+    void findAllUser(){
+        assertEquals(((ArrayList)UserRepository.findAll()).size(), 2);
+    }
+    @Test
+    void findOneUser(){
+        assertEquals(UserRepository.findById((long)3).get().getLastName(), "jean");
     }
 
 }

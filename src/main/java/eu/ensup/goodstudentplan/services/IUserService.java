@@ -5,9 +5,11 @@ import eu.ensup.goodstudentplan.domain.User;
 import eu.ensup.goodstudentplan.dto.UserDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public interface IUserService {
 
     ResponseEntity<Set<UserDto>> findAll();

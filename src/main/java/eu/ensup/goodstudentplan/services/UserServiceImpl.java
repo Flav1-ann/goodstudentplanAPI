@@ -8,14 +8,17 @@ import eu.ensup.goodstudentplan.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Service
-public class UserServiceImpl implements IUserService {
+public class UserServiceImpl implements IUserService, UserDetailsService {
 
     @Autowired
     ModelMapper modelMapper;
@@ -67,6 +70,9 @@ public class UserServiceImpl implements IUserService {
 
     }
 
+    private Collection<? extends GrantedAuthority> getAuthorities() {
+        return Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"));
+    }
 
     @Override
     public UserDto convertToDto(User user){
@@ -78,4 +84,9 @@ public class UserServiceImpl implements IUserService {
         return  modelMapper.map(userDto, User.class);
     }
 
+    @Override
+    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+        User user =  userRepository.findByEmail(s).orElseThrow(()-> new UsernameNotFoundException("Email introuvable" + s));
+        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(),getAuthorities());
+    }
 }

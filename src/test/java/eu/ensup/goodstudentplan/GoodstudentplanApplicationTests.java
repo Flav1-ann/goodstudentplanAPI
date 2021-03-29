@@ -20,12 +20,4 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 class GoodstudentplanApplicationTests {
 
-    @Autowired
-    IProductRepository productRepository;
-
-    @Test
-    void findAllProduct() throws Exception{
-        assertEquals(((ArrayList)productRepository.findAll()).size(), 2);
-    }
-
 }
