@@ -37,7 +37,7 @@ public class UserServiceImpl implements IUserService, UserDetailsService {
     }
 
     @Override
-    public ResponseEntity<UserDto> findById(long id){
+    public ResponseEntity<UserDto> findById(int id){
         Optional<User> queriedUser = userRepository.findById(id);
         return queriedUser.map(user -> new ResponseEntity<>(convertToDto(user), HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(null, HttpStatus.NOT_FOUND));
@@ -59,7 +59,7 @@ public class UserServiceImpl implements IUserService, UserDetailsService {
     }
 
     @Override
-    public ResponseEntity<HttpStatus> deleteUser(long id){
+    public ResponseEntity<HttpStatus> deleteUser(int id){
         Optional<User> toDeleteUser = userRepository.findById(id);
         if (toDeleteUser.isPresent()){
             userRepository.deleteById(id);

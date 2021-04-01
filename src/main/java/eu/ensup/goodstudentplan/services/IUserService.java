@@ -14,13 +14,15 @@ public interface IUserService {
 
     ResponseEntity<Set<UserDto>> findAll();
 
-    ResponseEntity<UserDto> findById(long id);
+    ResponseEntity<UserDto> findById(int id);
+
 
     ResponseEntity<UserDto> updateUser(UserDto userDto);
 
     ResponseEntity<UserDto> createUser(UserDto userDto);
 
-    ResponseEntity<HttpStatus> deleteUser(long id);
+    ResponseEntity<HttpStatus> deleteUser(int id);
+
 
     UserDto convertToDto(User user);
 

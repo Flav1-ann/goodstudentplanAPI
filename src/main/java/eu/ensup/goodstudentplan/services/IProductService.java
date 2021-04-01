@@ -13,11 +13,11 @@ public interface IProductService {
 
     ResponseEntity<Set<ProductDto>> findAll();
 
-    ResponseEntity<ProductDto> findById(long id);
+    ResponseEntity<ProductDto> findById(int id);
 
     ResponseEntity<ProductDto> createProduct(ProductDto productDto);
 
-    ResponseEntity<HttpStatus> deleteProduct(long id);
+    ResponseEntity<HttpStatus> deleteProduct(int id);
 
     ProductDto convertToDto(Product product);
 

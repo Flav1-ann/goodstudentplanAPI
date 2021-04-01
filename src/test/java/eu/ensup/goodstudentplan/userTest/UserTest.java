@@ -1,4 +1,4 @@
-package eu.ensup.goodstudentplan;
+package eu.ensup.goodstudentplan.userTest;
 
 
 import eu.ensup.goodstudentplan.domain.User;
@@ -23,7 +23,7 @@ public class UserTest {
     }
     @Test
     void findOneUser(){
-        assertEquals(UserRepository.findById((long)3).get().getLastName(), "jean");
+        assertEquals(UserRepository.findById(3).get().getLastName(), "jean");
     }
 
 }

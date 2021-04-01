@@ -2,9 +2,8 @@ package eu.ensup.goodstudentplan.domain;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.sql.Date;
 
 @Entity
 @NoArgsConstructor
@@ -15,13 +14,18 @@ public class Product {
 
     @Id
     @GeneratedValue
-    private long id;
-
+    private int id;
     private String title;
     private String description;
     private String image;
     private int price;
-    private int size;
+    private Date saleAt;
+    private Date buyAt;
+    private String category;
+    private String subCategory;
+    @ManyToOne
+    private User Seller;
+
 
 
 }

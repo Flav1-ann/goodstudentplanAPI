@@ -33,7 +33,7 @@ public class ProductServiceImpl implements IProductService{
     }
 
     @Override
-    public ResponseEntity<ProductDto> findById(long id) {
+    public ResponseEntity<ProductDto> findById(int id) {
         Optional<Product> product = productRepository.findById(id);
         return product.map(user -> new ResponseEntity<>(convertToDto(user),HttpStatus.OK))
                 .orElseGet(()-> new ResponseEntity<>(null,HttpStatus.NOT_FOUND));
@@ -41,11 +41,11 @@ public class ProductServiceImpl implements IProductService{
 
     @Override
     public ResponseEntity<ProductDto> createProduct(ProductDto productDto) {
-        return null;
+        return new ResponseEntity<>(convertToDto(productRepository.save(convertToEntity(productDto))), HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<HttpStatus> deleteProduct(long id) {
+    public ResponseEntity<HttpStatus> deleteProduct(int id) {
         return null;
     }
 

@@ -24,7 +24,7 @@ public class UserController {
     }
 
     @GetMapping("/find/{id}")
-    public ResponseEntity<UserDto> findUserById( @PathVariable long id){
+    public ResponseEntity<UserDto> findUserById( @PathVariable int id){
         return userService.findById(id);
     }
 
@@ -39,7 +39,7 @@ public class UserController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<HttpStatus> deleteUser(@PathVariable long id){
+    public ResponseEntity<HttpStatus> deleteUser(@PathVariable int id){
         return userService.deleteUser(id);
     }
 

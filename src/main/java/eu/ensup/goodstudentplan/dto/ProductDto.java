@@ -1,6 +1,9 @@
 package eu.ensup.goodstudentplan.dto;
 
+import eu.ensup.goodstudentplan.domain.User;
 import lombok.*;
+
+import java.sql.Date;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -13,5 +16,9 @@ public class ProductDto {
     private String description;
     private String image;
     private int price;
-    private int size;
+    private Date saleAt;
+    private Date buyAt;
+    private String category;
+    private String subCategory;
+    private User Seller;
 }

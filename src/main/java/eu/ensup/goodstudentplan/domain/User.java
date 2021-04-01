@@ -5,9 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.sql.Date;
+import java.util.List;
 
 
 @Entity
@@ -19,12 +19,16 @@ public class User {
 
     @Id
     @GeneratedValue
-    private long id;
-
+    private int id;
     private String name;
     private String lastName;
     private String email;
     private String password;
+    private String sexe;
+    private Date birthday;
+    private String address;
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private List<Product> products;
 
 
 }
